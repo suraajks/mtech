@@ -36,3 +36,7 @@
 .buttonStyle{
   margin-top: 10px;
 }
+.chatMessage{
+  background-color: aliceblue;
+  margin: 10px;
+}

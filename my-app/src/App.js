@@ -5,7 +5,8 @@ import { Button } from 'react-bootstrap';
 import './App.css';
 
 function App() {
-  const [userInput, setUserInput] = useState('');
+ const [userInput, setUserInput ] = useState('');
+ const [chatData , setChatData] = useState([]);
 
   // Test GET request (optional, remove if not needed)
   const getData = async () => {
@@ -20,11 +21,24 @@ function App() {
   // Send user input to FastAPI backend
   const sendData = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/query', {
+      const data = await axios.post('http://127.0.0.1:8000/query', {
         prompt: userInput   // ✅ must match backend key
       });
-
-      console.log("POST response:", response.data);
+      console.log('>>data',data)
+      const id = chatData.length + 1;
+      const chatObj = {
+        chatId: id,
+        userInput: userInput,
+        response: data.response
+      }
+      const updatedChatData = [
+        ...chatData,
+        {
+          ...chatObj
+        }
+      ]
+      setChatData(updatedChatData);
+      setUserInput('');
     } catch (error) {
       console.error("Error in POST:", error);
     }
@@ -45,9 +59,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>MTECH Project Chatbot</h1>
-        <ChatBot inputChangeHandler={inputChangeHandler} />
-        <Button className="buttonStyle" onClick={onSend}>Send</Button>
+        <h1>MTECH Project chatbot</h1>
+        <ChatBot 
+          inputChangeHandler={inputChangeHandler}
+          chatData={chatData}
+         />
+         <Button className ="buttonStyle
+         " onClick={onSend}>Send</Button>
       </header>
     </div>
   );
