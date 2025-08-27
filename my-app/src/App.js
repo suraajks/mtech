@@ -29,7 +29,7 @@ function App() {
       const chatObj = {
         chatId: id,
         userInput: userInput,
-        response: data.response
+        response: data.data.response
       }
       const updatedChatData = [
         ...chatData,
