@@ -40,6 +40,7 @@ function App() {
       setChatData(updatedChatData);
       setUserInput('');
     } catch (error) {
+      setUserInput('');
       console.error("Error in POST:", error);
     }
   };
@@ -63,6 +64,7 @@ function App() {
         <ChatBot 
           inputChangeHandler={inputChangeHandler}
           chatData={chatData}
+          userInput={userInput}
          />
          <Button className ="buttonStyle
          " onClick={onSend}>Send</Button>

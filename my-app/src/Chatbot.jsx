@@ -2,7 +2,7 @@ import React , { useEffect } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 function App(props) {
-const { inputChangeHandler , chatData } = props;
+const { inputChangeHandler , chatData , userInput } = props;
 
 
   return (
@@ -19,6 +19,7 @@ const { inputChangeHandler , chatData } = props;
     <input
      id="chat-input"
     className='inputStyle'
+     value={userInput}
      placeholder='Please provide input' 
      onChange={inputChangeHandler}
     />
