@@ -1,58 +1,53 @@
-import React , { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ChatBot from './Chatbot';
 import { Button } from 'react-bootstrap';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
- const [userInput, setUserInput ] = useState('');
+  const [userInput, setUserInput] = useState('');
 
-  const  getData = async() => {
+  // Test GET request (optional, remove if not needed)
+  const getData = async () => {
     try {
-      const response = await axios.get('/user?ID=12345');
-      console.log(response);
+      const response = await axios.get('http://127.0.0.1:8000/'); 
+      console.log("GET response:", response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error in GET:", error);
     }
-  }
+  };
 
-
-  const sendData = async() => {
+  // Send user input to FastAPI backend
+  const sendData = async () => {
     try {
-      const response = await axios({
-        method: 'post',
-        url: '/user/12345',
-        data: userInput,
+      const response = await axios.post('http://127.0.0.1:8000/query', {
+        prompt: userInput   // ✅ must match backend key
       });
-      console.log(response);
+
+      console.log("POST response:", response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error in POST:", error);
     }
-  }
-  
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[]);
+  }, []);
 
-  const inputChangeHandler = (e) =>{
-    setUserInput(e.target.value)
+  const inputChangeHandler = (e) => {
+    setUserInput(e.target.value);
+  };
 
-  }
-
-  const onSend =()=>{
+  const onSend = () => {
     sendData();
+  };
 
-  }
   return (
     <div className="App">
       <header className="App-header">
-        <h1>MTECH Project chatbot</h1>
-        <ChatBot 
-          inputChangeHandler={inputChangeHandler}
-         />
-         <Button className ="buttonStyle" onClick={onSend}>Send</Button>
+        <h1>MTECH Project Chatbot</h1>
+        <ChatBot inputChangeHandler={inputChangeHandler} />
+        <Button className="buttonStyle" onClick={onSend}>Send</Button>
       </header>
     </div>
   );
