@@ -1,0 +1,97 @@
+.App {
+  text-align: center;
+  border: 2px solid black;
+  padding-bottom: 200px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chat .inputStyle{
+    margin-top: 10px;
+}
+.buttonStyle{
+  margin-top: 10px;
+}
+.chatMessages{
+  margin: 10px;
+}
+
+.chatMessageUser,.chatMessageBot{
+  display: flex;
+  padding: 20px;
+}
+.chatMessageBot{
+  margin-top: 10px;
+}
+.chatMessageUser span{
+  width: 50%;
+  display: inline-block;
+  background-color: rgb(219, 231, 243);
+    text-align: left;
+    min-height: 50px;
+    padding: 10px;
+} 
+
+.chatMessageBot span{
+  width: 50%;
+  background-color: aliceblue;
+  display: inline-block;
+    text-align: left;
+    margin-left: auto;
+    min-height: 50px;
+    padding: 10px;
+} 
+
+ span i{
+  margin-right: 10px;
+ 
+} 
+
+.header{
+  background-color: blue;
+    padding: 20px;
+}
+
+input{
+  min-height: 100px;
+  width:100%;
+}
+
+.footer{
+  position: fixed;
+  min-height: 100px;
+  width: 100%;
+  padding: 10px;
+  bottom:0;
+  background-color: white;
+}
+
+.spinner{
+  margin-bottom: 50px;
+}
